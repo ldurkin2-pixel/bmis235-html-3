@@ -3,7 +3,7 @@
 **Name:** Lisette Durkin
 **GU username:** ldurkin2-pixel
 
-My live page: 
+My live page: https://ldurkin2-pixel.github.io/bmis235-html-3/index.html
 
 Instructions: https://gu-27.github.io/html-module/html-3.html
 
