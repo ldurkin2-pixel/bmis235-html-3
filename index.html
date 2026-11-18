@@ -37,7 +37,163 @@
      This box is empty on purpose. In Part 7 you paste an interactive
      graphic BETWEEN the opening <div> and the closing </div> below.
      ===================================================================== -->
-<div class="showcase"></div>
+<div class="showcase"><!-- HTML: three clickable sport titles, plus a card below that shows a fun fact for the sport you pick. -->
+<div class="sport-titles">
+<button class="sport-title" data-sport="golf">Golf</button>
+<button class="sport-title" data-sport="tennis">Tennis</button>
+<button class="sport-title" data-sport="skiing">Skiing</button>
+</div>
+<div class="fact-card">
+<span class="fact-icon"></span>
+<span class="fact-heading">Pick a sport above!</span>
+<span class="fact-text">Click Golf, Tennis or Skiing to see a fun fact.</span>
+<span class="fact-tip"></span>
+</div>
+<!-- CSS: styles the title buttons, highlights the one that's picked, and styles the fact card with a fade-in effect. Everything shrinks on phones. -->
+<style>
+.showcase .sport-titles {
+display: flex;
+justify-content: center;
+gap: 10px;
+margin-bottom: 10px;
+}
+.showcase .sport-title {
+flex: 1;
+max-width: 180px;
+padding: 10px 6px;
+font-family: 'YOUR FONT', sans-serif;
+font-size: 1.3rem;
+font-weight: bold;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: #1E3A5F; /* main color /
+background: #FFFFFF;
+border: 3px solid #1E3A5F; /* main color /
+border-radius: 10px;
+cursor: pointer;
+transition: transform 0.15s, background 0.15s, color 0.15s;
+}
+.showcase .sport-title:hover {
+transform: translateY(-3px);
+}
+.showcase .sport-title.active {
+background: #FF6B35; /* accent color /
+border-color: #FF6B35; /* accent color /
+color: #FFFFFF;
+}
+.showcase .fact-card {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 12px;
+height: 300px;
+padding: 20px;
+box-sizing: border-box;
+text-align: center;
+font-family: 'YOUR FONT', sans-serif;
+color: #FFFFFF;
+background: #1E3A5F; /* main color /
+border: 3px solid #FF6B35; /* accent color /
+border-radius: 12px;
+cursor: pointer;
+}
+.showcase .fact-card.show {
+animation: showcase-fade 0.4s ease;
+}
+@keyframes showcase-fade {
+from { opacity: 0; transform: scale(0.95); }
+to { opacity: 1; transform: scale(1); }
+}
+.showcase .fact-icon {
+font-size: 2.8rem;
+line-height: 1;
+}
+.showcase .fact-heading {
+font-size: 1.4rem;
+font-weight: bold;
+color: #FF6B35; /* accent color /
+}
+.showcase .fact-text {
+max-width: 480px;
+font-size: 1.1rem;
+line-height: 1.5;
+}
+.showcase .fact-tip {
+font-size: 0.85rem;
+opacity: 0.75;
+}
+@media (max-width: 600px) {
+.showcase .sport-titles { gap: 6px; }
+.showcase .sport-title { font-size: 0.95rem; letter-spacing: 1px; padding: 8px 4px; }
+.showcase .fact-card { height: 280px; padding: 14px; }
+.showcase .fact-text { font-size: 1rem; }
+}
+</style>
+<!-- JavaScript: holds two fun facts per sport. Clicking a title shows that sport's first fact; tapping the card flips to the other fact. -->
+<script>
+(function () {
+var root = document.currentScript.parentElement;
+var buttons = root.querySelectorAll('.sport-title');
+var card = root.querySelector('.fact-card');
+var icon = card.querySelector('.fact-icon');
+var heading = card.querySelector('.fact-heading');
+var text = card.querySelector('.fact-text');
+var tip = card.querySelector('.fact-tip');
+var facts = {
+golf: {
+icon: '⛳',
+name: 'Golf',
+list: [
+'Golf has been played on the moon! Astronaut Alan Shepard hit two golf balls there during the Apollo 14 mission in 1971.',
+'Most golf balls have between 300 and 500 dimples. The dimples help the ball fly farther than a smooth ball would.'
+]
+},
+tennis: {
+icon: '🎾',
+name: 'Tennis',
+list: [
+'Wimbledon is the oldest tennis tournament in the world. It was first played in 1877.',
+'Players at Wimbledon have to dress almost entirely in white, a tradition that goes back to the 1800s.'
+]
+},
+skiing: {
+icon: '⛷️',
+name: 'Skiing',
+list: [
+'Skiing is ancient. Pieces of wooden skis found in Russia are about 8,000 years old.',
+'Skiing was part of the very first Winter Olympics in 1924 in Chamonix, France, with cross-country skiing and ski jumping.'
+]
+}
+};
+var current = null;
+var index = 0;
+function showFact() {
+var f = facts[current];
+icon.textContent = f.icon;
+heading.textContent = f.name + ' Fun Fact #' + (index + 1);
+text.textContent = f.list[index];
+tip.textContent = 'Tap this card for another fact';
+card.classList.remove('show');
+void card.offsetWidth;
+card.classList.add('show');
+}
+buttons.forEach(function (btn) {
+btn.addEventListener('click', function () {
+buttons.forEach(function (b) { b.classList.remove('active'); });
+btn.classList.add('active');
+current = btn.getAttribute('data-sport');
+index = 0;
+showFact();
+});
+});
+card.addEventListener('click', function () {
+if (!current) return;
+index = (index + 1) % facts[current].list.length;
+showFact();
+});
+})();
+</script></div>
 
 <!-- Footer: fill in your name -->
 <footer>Built by Lisette Durkin &middot; BMIS 235</footer>
