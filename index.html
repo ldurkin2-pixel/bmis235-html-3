@@ -37,7 +37,79 @@
      This box is empty on purpose. In Part 7 you paste an interactive
      graphic BETWEEN the opening <div> and the closing </div> below.
      ===================================================================== -->
-<div class="showcase"></div>
+<div class="showcase"><div class="sport-titles">
+<button class="sport-title" data-sport="golf">Golf</button>
+<button class="sport-title" data-sport="tennis">Tennis</button>
+<button class="sport-title" data-sport="skiing">Skiing</button>
+</div>
+<div class="sport-stage">
+<canvas></canvas>
+<span class="sport-message">Click a sport above!</span>
+</div>
+<!-- CSS: styles the title words as buttons, highlights the one that's picked, and sizes the animation box. Everything shrinks on phones. -->
+<style>
+.showcase .sport-titles {
+display: flex;
+justify-content: center;
+gap: 10px;
+margin-bottom: 10px;
+}
+.showcase .sport-title {
+flex: 1;
+max-width: 180px;
+padding: 10px 6px;
+font-family: 'YOUR FONT', sans-serif;
+font-size: 1.3rem;
+font-weight: bold;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: #1E3A5F; /* main color /
+background: #FFFFFF;
+border: 3px solid #1E3A5F; /* main color /
+border-radius: 10px;
+cursor: pointer;
+transition: transform 0.15s, background 0.15s, color 0.15s;
+}
+.showcase .sport-title:hover {
+transform: translateY(-3px);
+}
+.showcase .sport-title.active {
+background: #FF6B35; /* accent color /
+border-color: #FF6B35; /* accent color /
+color: #FFFFFF;
+}
+.showcase .sport-stage {
+position: relative;
+height: 360px;
+border-radius: 12px;
+overflow: hidden;
+background: #1E3A5F; /* main color /
+border: 3px solid #FF6B35; /* accent color /
+cursor: pointer;
+}
+.showcase .sport-stage canvas {
+display: block;
+width: 100%;
+height: 100%;
+}
+.showcase .sport-message {
+position: absolute;
+top: 50%;
+left: 0;
+right: 0;
+transform: translateY(-50%);
+text-align: center;
+font-family: 'YOUR FONT', sans-serif;
+font-size: 1.2rem;
+color: #FFFFFF;
+pointer-events: none;
+}
+@media (max-width: 600px) {
+.showcase .sport-titles { gap: 6px; }
+.showcase .sport-title { font-size: 0.95rem; letter-spacing: 1px; padding: 8px 4px; }
+.showcase .sport-stage { height: 300px; }
+}
+</style></div>
 
 <!-- Footer: fill in your name -->
 <footer>Built by Lisette Durkin &middot; BMIS 235</footer>
