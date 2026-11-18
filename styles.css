@@ -11,15 +11,15 @@
 
 body {
     font-family: Georgia, "Times New Roman", serif;
-    background-color: #light blue;
-    color: #dark blue;
+    background-color: light blue;
+    color: dark blue;
     margin: 0;
     padding: 0 20px 40px 20px;
 }
 
 /* the menu at the top of every page */
 nav {
-    background-color: #light grey;
+    background-color: light grey;
     padding: 14px;
     text-align: center;
 }
